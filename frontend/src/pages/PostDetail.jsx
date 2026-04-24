@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../api';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Calendar, User, Edit2, Trash2, ChevronLeft } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
@@ -15,7 +16,7 @@ const PostDetail = () => {
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/posts/${id}`);
+                const res = await axios.get(`${API_BASE_URL}/posts/${id}`);
                 setPost(res.data);
             } catch (err) {
                 console.error(err);
@@ -29,7 +30,7 @@ const PostDetail = () => {
     const handleDelete = async () => {
         if (window.confirm('Are you sure you want to delete this post?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/posts/${id}`);
+                await axios.delete(`${API_BASE_URL}/posts/${id}`);
                 navigate('/');
             } catch (err) {
                 console.error(err);

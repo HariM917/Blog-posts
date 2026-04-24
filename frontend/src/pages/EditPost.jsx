@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../api';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Save } from 'lucide-react';
 
@@ -14,7 +15,7 @@ const EditPost = () => {
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/posts/${id}`);
+                const res = await axios.get(`${API_BASE_URL}/posts/${id}`);
                 setTitle(res.data.title);
                 setContent(res.data.content);
             } catch (err) {
@@ -30,7 +31,7 @@ const EditPost = () => {
         e.preventDefault();
         setSaving(true);
         try {
-            await axios.patch(`http://localhost:5000/api/posts/${id}`, { title, content });
+            await axios.patch(`${API_BASE_URL}/posts/${id}`, { title, content });
             navigate(`/post/${id}`);
         } catch (err) {
             console.error(err);

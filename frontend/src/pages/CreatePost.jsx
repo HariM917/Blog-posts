@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../api';
 import { useNavigate } from 'react-router-dom';
 import { Send } from 'lucide-react';
 
@@ -13,7 +14,7 @@ const CreatePost = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            await axios.post('http://localhost:5000/api/posts', { title, content });
+            await axios.post(`${API_BASE_URL}/posts`, { title, content });
             navigate('/');
         } catch (err) {
             console.error(err);

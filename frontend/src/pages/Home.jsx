@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../api';
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight, Search, Clock, ChevronRight } from 'lucide-react';
 
@@ -7,11 +8,10 @@ const Home = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 
-
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/posts');
+                const res = await axios.get(`${API_BASE_URL}/posts`);
                 setPosts(res.data || []);
             } catch (err) {
                 console.error('API Error:', err);

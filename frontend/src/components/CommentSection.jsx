@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../api';
 import { useAuth } from '../context/AuthContext';
 import { MessageSquare, Trash2, Send } from 'lucide-react';
 
@@ -13,7 +14,7 @@ const CommentSection = ({ postId, initialComments }) => {
         if (!newComment.trim()) return;
 
         try {
-            const res = await axios.post(`http://localhost:5000/api/comments/${postId}`, { content: newComment });
+            const res = await axios.post(`${API_BASE_URL}/comments/${postId}`, { content: newComment });
             // Since the API returns the comment without the author username populated in a simple way,
             // we should ideally re-fetch or the API should return populated data.
             // For now, let's manually add it for UI responsiveness.
@@ -30,7 +31,7 @@ const CommentSection = ({ postId, initialComments }) => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/comments/${id}`);
+            await axios.delete(`${API_BASE_URL}/comments/${id}`);
             setComments(comments.filter(c => c._id !== id));
         } catch (err) {
             console.error(err);
