@@ -1,0 +1,12 @@
+node_modules
+.env
+.DS_Store
+dist
+build
+tempConn.js
+resolveSrv.js
+testConn.js
+verifyCount.js
+conn_error.txt
+cleanupSamples.js
+archive (2)/
