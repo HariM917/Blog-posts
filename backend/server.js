@@ -23,6 +23,7 @@ app.use('/api/import', importRoutes);
 
 // Health check
 app.get('/', (req, res) => res.send('Blog API is running...'));
+app.get('/api/health', (req, res) => res.json({ status: 'ok', message: 'Blog API is healthy' }));
 
 // MongoDB Connection
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/blog-platform';
